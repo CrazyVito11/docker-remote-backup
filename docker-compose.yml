@@ -1,0 +1,15 @@
+services:
+  docker-remote-backup:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./logs:/logs                 # Directory for logs
+      - ${SOURCE_DIRECTORY}:/data:ro # Directory to sync
+    environment:
+      - CRON_TZ=UTC                 # Set timezone for cron
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - .env
+
