@@ -32,11 +32,32 @@ The configuration steps that are needed will depend on what kind of machine the 
 ## Creating/restoring backups
 ### Create backup at remote
 ***TODO:** Add section that tells them it automatically creates the backup based on a CRON schedule*
-***TODO:** Document steps on how to immediately start creating a backup*
+
+#### Make backup immediately
+If you want to make the backup immediately, you can use the following command:
+```bash
+docker compose exec docker-remote-backup bash /sync-now.sh
+```
 
 
 ### Restore from remote backup
-***TODO:** Document steps on how to restore the files from the remote server*
+If you want to browse and/or download files from the remote backup, you can use the following command to start a WebDav server:
+
+```bash
+docker compose exec docker-remote-backup rclone serve webdav remote_backup:/ --addr 127.0.0.1:8080 --read-only
+```
+
+You should now be able to browse and download files using a webbrowser or a WebDav client _([WinSCP](https://winscp.net/eng/index.php) or [Dolphin](https://apps.kde.org/dolphin/) via `webdav://127.0.0.1:8080`)_.
+
+> [!NOTE]
+> For safety reasons, this WebDav server will only be reachable from the host machine (`127.0.0.1:8080`) and is _read-only_ to prevent accidental damage.
+>
+> If you want to make it accessible from the network while staying secure, replace `--addr 127.0.0.1:8080` with `--addr :8080 --user "admin" --pass "s0mething_SECURE"`.
+
+> [!WARNING]
+> If you are restoring from another machine that wasn't originally hosting this container, you will also have to make sure you use the same `.env` credentials.
+>
+> **NEVER** run `sync-now.sh` or any other Rclone command in this state, as you can risk damaging your remote backup!
 
 
 ## Tips
