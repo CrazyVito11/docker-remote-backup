@@ -1,3 +1,4 @@
 .env
 logs
 backup_dir
+hooks/*.sh

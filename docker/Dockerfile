@@ -4,7 +4,7 @@ USER root
 
 # Update the local package cache and install dependencies
 RUN apk update
-RUN apk add fcron bash envsubst
+RUN apk add fcron bash envsubst curl
 
 # Prepare the rclone configuration
 COPY /rclone /config/rclone-template

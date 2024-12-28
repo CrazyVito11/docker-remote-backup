@@ -74,6 +74,18 @@ To obfuscate a password, run the following command:
 The output of this command can now be used.
 
 
+### Run script during specific events
+You have the ability to run your own Bash scripts at certain events, this can allow you to for example send notifications in case the sync completes or fails.
+
+A couple of examples have been provided in the `hooks` directory.
+
+| Event            | Script name         | Description                                                        |
+|------------------|---------------------|--------------------------------------------------------------------|
+| Backup success   | `backup-success.sh` | Executed when the RClone command successfully finishes.            |
+| Backup failure   | `backup-failure.sh` | Executed when the RClone command ran against some kind of error.   |
+| Lock file exists | `lock-present.sh`   | Executed when the lock file exists, indicating it's still syncing. |
+
+
 ### Symlinks inside backup directory
 If you have a bunch of projects and/or you just want to store a portion of it _(data without the application itself for example)_, then you can make a backup directory that contains relative symlinks to the actual data.
 

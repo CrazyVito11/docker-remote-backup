@@ -5,6 +5,7 @@ services:
       dockerfile: ./docker/Dockerfile
     volumes:
       - ./logs:/logs                         # Directory for logs
+      - ./hooks:/hooks:ro                    # Directory of hook scripts
       - ${SOURCE_CONTEXT_DIRECTORY}:/data:ro # Directory to sync
     environment:
       - CRON_TZ=UTC                          # Set timezone for cron
