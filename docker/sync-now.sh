@@ -50,9 +50,6 @@ touch "$LOCK_FILE"
 
 
 
-# Update the rclone configuration
-bash /config/rclone-template/generate-rclone-conf.sh /config/rclone-template/rclone.conf > /config/rclone/rclone.conf
-
 # Start syncing
 echo "Starting backup..."
 if rclone sync "/data${SOURCE_DIRECTORY}" "remote_backup:/" -v --metadata --create-empty-src-dirs --copy-links --stats 60s --log-file="$LOG_FILE"; then

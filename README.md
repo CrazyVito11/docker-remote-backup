@@ -15,9 +15,9 @@ It should now be ready to create backups for you!
 > Make sure you store the configured password and salt in a secure place like a password manager, as without those, your backups will be ***useless***!
 
 > [!TIP]
-> If you make a configuration change, don't forget to down and up the container again.
+> If you make a configuration change, don't forget to rebuild container again to regenerate the Rclone configuration.
 >
-> `docker compose down && docker compose up -d`
+> `docker compose down && docker compose up -d --build`
 
 
 ### Remote (backup server)
