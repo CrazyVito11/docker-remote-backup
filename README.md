@@ -7,6 +7,7 @@ Automatically mirrors an encrypted version of a directory to a remote SFTP serve
 1. Copy `.env.example` and call it `.env`
 2. Fill in `.env`
 3. Create the directories beforehand with `mkdir ./logs; mkdir ./backup_dir`
+    - Note: `backup_dir` is optional in case you want to build the backup in the same directory as this container, this directory is ignored by git to prevent conflicts if you update this container.
 4. Start the Docker Compose project with `docker compose up -d --build`
 
 It should now be ready to create backups for you!
@@ -15,7 +16,8 @@ It should now be ready to create backups for you!
 > Make sure you store the configured password and salt in a secure place like a password manager, as without those, your backups will be ***useless***!
 
 > [!TIP]
-> If you make a configuration change, don't forget to rebuild container again to regenerate the Rclone configuration.
+> If you make a configuration change, don't forget to rebuild container again.
+> Just restarting the container won't work because configuration files need to be regenerated.
 >
 > `docker compose down && docker compose up -d --build`
 
