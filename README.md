@@ -31,7 +31,14 @@ The configuration steps that are needed will depend on what kind of machine the 
 
 ## Creating/restoring backups
 ### Create backup at remote
-***TODO:** Add section that tells them it automatically creates the backup based on a CRON schedule*
+A cron job has already been configured to automatically run the backup, you can control the interval using the `BACKUP_CRON_INTERVAL` setting.
+
+> [!TIP]
+> You can use something like [cronjob.guru](https://crontab.guru/) if you aren't familiar with the cron time format.
+
+In case you set the interval to make backups often and it starts to overlap, it will cancel new backup requests until the previous one is done.
+This situation will also trigger the `Lock file exists` hook.
+
 
 #### Make backup immediately
 If you want to make the backup immediately, you can use the following command:
